@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
 import com.yongyct.templates.elasticsearchquerytemplate.tasks.ElasticsearchScrollTask;
 import com.yongyct.templates.elasticsearchquerytemplate.tasks.ElasticsearchTaskState;
 
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -56,8 +55,7 @@ public class ElasticsearchDataflow {
 
 	@Autowired
 	private RestHighLevelClient esClient;
-
-	@Setter
+	@Autowired
 	private ApplicationContext applicationContext;
 
 	private ScheduledExecutorService executorService;
