@@ -16,6 +16,10 @@ You will need running Elasticsearch instances. To set them up, see:
 ### Writing Test Cases
 * WIP
 
+### TODO
+* Handle failed shards
+* Persist commit states (configurable feature)
+
 ### Building the Application
 * To build the application, cd to project home and execute `mvn clean install`
 
