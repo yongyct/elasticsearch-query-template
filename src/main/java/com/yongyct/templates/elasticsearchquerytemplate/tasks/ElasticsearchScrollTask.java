@@ -1,6 +1,7 @@
 package com.yongyct.templates.elasticsearchquerytemplate.tasks;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.ElasticsearchStatusException;
@@ -136,6 +137,14 @@ public class ElasticsearchScrollTask implements Runnable {
 			throws IOException {
 
 		searchResponse = esClient.search(searchRequest, RequestOptions.DEFAULT);
+
+		// Handle failure for failed shards
+		if (searchResponse.getFailedShards() > 0) {
+			Arrays.asList(searchResponse.getShardFailures()).stream()
+					.forEach(shard -> log.warn("Failure in shard: {}", shard.toString()));
+			log.error("Failure querying shard(s)");
+		}
+
 		String scrollId = searchResponse.getScrollId();
 		SearchHit[] searchHits = searchResponse.getHits().getHits();
 		processHits(searchHits);

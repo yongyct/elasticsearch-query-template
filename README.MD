@@ -17,7 +17,6 @@ You will need running Elasticsearch instances. To set them up, see:
 * WIP
 
 ### TODO
-* Handle failed shards
 * Persist commit states (configurable feature)
 
 ### Building the Application
